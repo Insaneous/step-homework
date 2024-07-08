@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="./output.css" rel="stylesheet">
+    <style>
+        #header_tabs button:hover{
+            border-left: white solid 2px;
+            border-right: white solid 2px;
+        }
+        button:disabled{
+            border-bottom: blue solid 2px;
+        }
+        .active{
+            background-color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-400 h-dvh w-dvw">
+    <header class="bg-white">
+        <div class="flex justify-between p-5">
+            <h2 class="text-sky-500 text-xl uppercase font-bold">Weather of </h2>
+            <form action="" name="search">
+                <input type="text" placeholder="Enter your city" name="input" class="border-2 rounded-md border-black/50 p-1">
+                <button class="w-9 h-9 -ml-9 absolute bg-cover opacity-70
+                    bg-[url('https://upload.wikimedia.org/wikipedia/commons/c/ca/VisualEditor_-_Icon_-_Search.svg')]">
+                </button>
+            </form>
+        </div>
+        <div class="bg-gray-800 pl-8" id="header_tabs">
+            <button id="currentBtn" class="text-white p-4 border-gray-800 border-x-2 box-border" disabled>Today</button>
+            <button id="5d" class="text-white p-4 border-gray-800 border-x-2 box-border">5-day Forecast</button>
+        </div>
+    </header>
+    <main id="current_tab" class="p-4">
+        
+    </main>
+    <main id="forecast_tab" class="p-4 hidden">
+        
+    </main>
+    <script src="./script.js"></script>
+</body>
+</html>
