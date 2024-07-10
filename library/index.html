@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link href="./output.css" rel="stylesheet">
+    <style>
+        #header_tabs button:hover{
+            border-left: white solid 2px;
+            border-right: white solid 2px;
+        }
+        button:disabled{
+            border-bottom: blue solid 2px;
+        }
+        .active{
+            background-color: white;
+        }
+        table, th, td{
+            border: 1px solid black;
+        }
+        main input, main button, #modal input, #modal button{
+            border: solid gray 1px;
+            border-radius: 0.2rem;
+            font-weight: normal;
+        }
+        main button, #modal button{
+            border-color: rgb(50, 50, 50);
+            background-color: rgb(220, 220, 220);
+        }
+        #books-id, #books-amount, #books-pages, #books-edit, #visitors-id, #visitors-edit, #cards-id, #cards-edit{
+            width: 8%;
+        }
+        #cards-taken, #cards-returned{
+            width: 15%;
+        }
+    </style>
+</head>
+<body class="h-dvh w-dvw">
+    <header>
+        <div class="flex justify-between p-5">
+            <h2 class="text-sky-500 text-xl uppercase font-bold">Library</h2>
+        </div>
+        <div class="bg-gray-800 pl-8" id="header_tabs">
+            <button id="books-btn" class="text-white p-4 border-gray-800 border-x-2 box-border" disabled>Books</button>
+            <button id="visitors-btn" class="text-white p-4 border-gray-800 border-x-2 box-border">Visitors</button>
+            <button id="cards-btn" class="text-white p-4 border-gray-800 border-x-2 box-border">Cards</button>
+            <button id="stats-btn" class="text-white p-4 border-gray-800 border-x-2 box-border">Statistics</button>
+        </div>
+        <div id="modal" class="hidden justify-center items-center absolute top-0 left-0 w-screen h-screen">
+            <div id="modal-bg" class="absolute bg-black w-screen h-screen opacity-50 top-0 left-0"></div>
+            <form name="modal_form" class="flex flex-col bg-white rounded w-[60vw] z-10 p-5 gap-2 font-bold">
+                
+            </form>
+        </div>
+    </header>
+    <main class="p-5">
+        
+    </main>
+    <script src="./script.js"></script>
+</body>
+</html>
