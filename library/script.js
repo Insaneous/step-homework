@@ -257,6 +257,7 @@ let modalCreate = _ =>{
         visitors.push(new Visitor(modalForm.name.value, modalForm.phone.value))
     }else if (activeTab == 'Cards'){
         cards.push(new Card(books[modalForm.book.value], visitors[modalForm.visitor.value]))
+        books[modalForm.book.value].amount-=1
     }
     save()
     loadPage()
@@ -274,9 +275,14 @@ let loadModal = (action, id=1) => {
             `
             for (let object in tabList[key.substring(0,1).toUpperCase()+key.substring(1,key.length)+'s']){
                 object = tabList[key.substring(0,1).toUpperCase()+key.substring(1,key.length)+'s'][object]
+                console.log(object)
+                if (object in books){
+                    if (object.amount <= 0){}
+                }else{
                 selectObj += `
                 <option value="${object.id}">${object.name || object.title}</option>
                 `
+                }
             }
             selectObj += (key == 'id')||(key == 'edit')?'':`
             </select>
@@ -287,7 +293,7 @@ let loadModal = (action, id=1) => {
         for (let key in tabObj[activeTab]){
             modalForm.innerHTML += (key == 'id')||(key == 'edit')?'':`
             <label for='input-${key}'>${key.substring(0,1).toUpperCase()+key.substring(1,key.length)}</label>
-            <input id='input-${key}' type="text" name='${key}'>
+            <input id='input-${key}' type="text" name='${key}' required>
             `
         }
     }
@@ -298,6 +304,16 @@ let loadModal = (action, id=1) => {
     formFields.forEach(el=>{
         if ((el.getAttribute('name') == 'year') || (el.getAttribute("name") == 'pages') || (el.getAttribute("name") == 'amount')){
             el.setAttribute('type', 'number')
+            el.setAttribute('min', 0)
+        }else if (el.getAttribute('name') == 'phone'){
+            el.setAttribute('type', 'tel')
+            el.oninput = e =>{
+                for (let i in e.target.value.split('')){
+                    if (!'0123456789+()-'.includes(e.target.value.split('')[i])){
+                        e.target.value = e.target.value.replace(e.target.value.split('')[i], '')
+                    }
+                }
+            }
         }
     })
     if (action == 'Create'){
@@ -324,6 +340,7 @@ let loadModal = (action, id=1) => {
 }
 let returnBook = id =>{
     cards[id].returned = new Date().toDateString()
+    books[cards[id].book.id].amount++
     save()
     loadPage()
 }
